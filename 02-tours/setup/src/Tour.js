@@ -1,7 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const Tour = () => {
-  return <h2>tour component</h2>;
+/*
+Property za Tour su unesene kao {...tour}
+<Tour key={tour.id} {...tour}></Tour>; */
+const Tour = ({ id, image, info, price, name }) => {
+  return (
+    <article className="single-tour">
+      <img src={image} alt={name} />
+      <footer>
+        <div className="tour-info">
+          <h4>{name} </h4>
+          <h4 className="tour-price">${price} </h4>
+        </div>
+        <p>{info}</p>
+        <button className="delete-btn"></button>
+      </footer>
+    </article>
+  );
 };
 
 export default Tour;
