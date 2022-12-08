@@ -18,6 +18,15 @@ function App() {
       setIndex(0);
     }
   }, [index, people]);
+  //useEffect for auto selecting , nakon svake 3 sekunde pomjera index za +1
+  /* posto se auto slider setIndex() sudaraju sa manuelnim setIndex(),
+  postavlja se clean-up na 'slider'  */
+  useEffect(() => {
+    let slider = setInterval(() => {
+      setIndex(index + 1);
+    }, 3000);
+    return () => clearInterval(slider); //clean-up
+  }, [index]);
 
   return (
     <section className="section">
