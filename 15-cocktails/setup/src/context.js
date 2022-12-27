@@ -39,8 +39,8 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchDrinks();
-  }, [searchTerm]);
+    fetchDrinks(); //poziva coctails
+  }, [searchTerm]); //svaki put kad se promjeni 'searchTerm'
 
   return (
     <AppContext.Provider

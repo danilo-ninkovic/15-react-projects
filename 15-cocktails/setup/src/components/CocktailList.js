@@ -5,10 +5,12 @@ import { useGlobalContext } from "../context";
 
 const CocktailList = () => {
   const { coctails, loading } = useGlobalContext();
-  console.log(coctails);
+
+  /* ako je loading true */
   if (loading) {
     return <Loading />;
   }
+  /* ako nema coctails */
   if (coctails.length < 1) {
     return (
       <h2 className="section-title">
@@ -16,10 +18,16 @@ const CocktailList = () => {
       </h2>
     );
   }
+  /* ako ima coctails u pretragi */
   return (
-    <div>
-      <h2>cocktail list component</h2>
-    </div>
+    <section className="section">
+      <h2 className="section-title">coctails</h2>
+      <div className="cocktails-center">
+        {coctails.map((item) => {
+          return <Cocktail key={item.id} {...item} />;
+        })}
+      </div>
+    </section>
   );
 };
 
