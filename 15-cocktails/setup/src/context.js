@@ -6,10 +6,10 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("a");
+  const [searchTerm, setSearchTerm] = useState("");
   const [coctails, setCoctails] = useState([]);
 
-  const fetchDrinks = async () => {
+  const fetchDrinks = useCallback(async () => {
     setLoading(true);
     try {
       const data = await (await fetch(`${url}${searchTerm}`)).json();
@@ -36,11 +36,11 @@ const AppProvider = ({ children }) => {
       console.log(error);
       setLoading(false);
     }
-  };
+  }, [searchTerm]); //promjenljiva
 
   useEffect(() => {
     fetchDrinks(); //poziva coctails
-  }, [searchTerm]); //svaki put kad se promjeni 'searchTerm'
+  }, [searchTerm, fetchDrinks]); //svaki put kad se promjeni 'searchTerm'
 
   return (
     <AppContext.Provider
